@@ -1,4 +1,4 @@
-from authlib.common.encoding import json_loads
+from authlib.common.encoding import json_loads, text_types
 from .key_set import KeySet
 from ._cryptography_key import load_pem_key
 
@@ -56,7 +56,7 @@ class JsonWebKey(object):
 
 
 def _transform_raw_key(raw):
-    if isinstance(raw, str) and \
+    if isinstance(raw, text_types) and \
             raw.startswith('{') and raw.endswith('}'):
         return json_loads(raw)
     elif isinstance(raw, (tuple, list)):

@@ -1,4 +1,5 @@
 from authlib.common.security import generate_token
+from authlib.common.encoding import text_types
 from authlib.common.urls import url_decode
 from .rfc6749.parameters import (
     prepare_grant_uri,
@@ -106,7 +107,7 @@ class OAuth2Client(object):
             self._auth_methods[auth.name] = auth
 
     def client_auth(self, auth_method):
-        if isinstance(auth_method, str) and auth_method in self._auth_methods:
+        if isinstance(auth_method, text_types) and auth_method in self._auth_methods:
             auth_method = self._auth_methods[auth_method]
         return self.client_auth_class(
             client_id=self.client_id,

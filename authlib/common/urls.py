@@ -1,15 +1,33 @@
+# coding: utf-8
 """
     authlib.util.urls
     ~~~~~~~~~~~~~~~~~
 
     Wrapper functions for URL encoding and decoding.
 """
+from __future__ import absolute_import, unicode_literals
 
 import re
-from urllib.parse import quote as _quote
-from urllib.parse import unquote as _unquote
-from urllib.parse import urlencode as _urlencode
-import urllib.parse as urlparse
+try:
+    from urllib import quote as _quote
+    from urllib import unquote as _unquote
+    from urllib import urlencode as _urlencode
+except ImportError:
+    from urllib.parse import quote as _quote
+    from urllib.parse import unquote as _unquote
+    from urllib.parse import urlencode as _urlencode
+
+try:
+    from urllib2 import parse_keqv_list  # noqa: F401
+    from urllib2 import parse_http_list  # noqa: F401
+except ImportError:
+    from urllib.request import parse_keqv_list  # noqa: F401
+    from urllib.request import parse_http_list  # noqa: F401
+
+try:
+    import urlparse
+except ImportError:
+    import urllib.parse as urlparse
 
 from .encoding import to_unicode, to_bytes
 

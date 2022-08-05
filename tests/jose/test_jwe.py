@@ -6,7 +6,7 @@ from collections import OrderedDict
 from cryptography.hazmat.primitives.keywrap import InvalidUnwrap
 
 from authlib.common.encoding import urlsafe_b64encode, json_b64encode, to_bytes, urlsafe_b64decode, json_loads, \
-    to_unicode
+    to_unicode, h2s
 from authlib.jose import JsonWebEncryption
 from authlib.jose import OctKey, OKPKey
 from authlib.jose import errors, ECKey
@@ -18,6 +18,13 @@ from authlib.jose.util import extract_header
 from tests.util import read_file_path
 
 register_jwe_draft(JsonWebEncryption)
+
+
+def int_list_to_bin(int_list):
+    if hasattr(int, "to_bytes"):
+        return bytes(int_list)
+    else:
+        return to_bytes(bytearray(int_list))
 
 
 class JWETest(unittest.TestCase):
@@ -572,24 +579,24 @@ class JWETest(unittest.TestCase):
         _shared_key_at_alice = alice_ephemeral_key.exchange_shared_key(bob_static_pubkey)
         self.assertEqual(
             _shared_key_at_alice,
-            bytes([158, 86, 217, 29, 129, 113, 53, 211, 114, 131, 66, 131, 191, 132, 38, 156,
-                   251, 49, 110, 163, 218, 128, 106, 72, 246, 218, 167, 121, 140, 254, 144, 196])
+            int_list_to_bin([158, 86, 217, 29, 129, 113, 53, 211, 114, 131, 66, 131, 191, 132, 38, 156,
+                            251, 49, 110, 163, 218, 128, 106, 72, 246, 218, 167, 121, 140, 254, 144, 196])
         )
 
         _fixed_info_at_alice = alg.compute_fixed_info(headers, enc.key_size)
         self.assertEqual(
             _fixed_info_at_alice,
-            bytes([0, 0, 0, 7, 65, 49, 50, 56, 71, 67, 77, 0, 0, 0, 5, 65,
-                   108, 105, 99, 101, 0, 0, 0, 3, 66, 111, 98, 0, 0, 0, 128])
+            int_list_to_bin([0, 0, 0, 7, 65, 49, 50, 56, 71, 67, 77, 0, 0, 0, 5, 65,
+                            108, 105, 99, 101, 0, 0, 0, 3, 66, 111, 98, 0, 0, 0, 128])
         )
 
         _dk_at_alice = alg.compute_derived_key(_shared_key_at_alice, _fixed_info_at_alice, enc.key_size)
-        self.assertEqual(_dk_at_alice, bytes([86, 170, 141, 234, 248, 35, 109, 32, 92, 34, 40, 205, 113, 167, 16, 26]))
+        self.assertEqual(_dk_at_alice, int_list_to_bin([86, 170, 141, 234, 248, 35, 109, 32, 92, 34, 40, 205, 113, 167, 16, 26]))
         self.assertEqual(urlsafe_b64encode(_dk_at_alice), b'VqqN6vgjbSBcIijNcacQGg')
 
         # All-in-one method verification
         dk_at_alice = alg.deliver(alice_ephemeral_key, bob_static_pubkey, headers, enc.key_size)
-        self.assertEqual(dk_at_alice, bytes([86, 170, 141, 234, 248, 35, 109, 32, 92, 34, 40, 205, 113, 167, 16, 26]))
+        self.assertEqual(dk_at_alice, int_list_to_bin([86, 170, 141, 234, 248, 35, 109, 32, 92, 34, 40, 205, 113, 167, 16, 26]))
         self.assertEqual(urlsafe_b64encode(dk_at_alice), b'VqqN6vgjbSBcIijNcacQGg')
 
         # Derived key computation at Bob
@@ -2671,27 +2678,27 @@ class JWETest(unittest.TestCase):
         # https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-xchacha-03#appendix-A.3.1
         enc = JsonWebEncryption.ENC_REGISTRY['XC20P']
 
-        plaintext = bytes.fromhex(
+        plaintext = h2s(
             '4c616469657320616e642047656e746c656d656e206f662074686520636c6173' +
             '73206f66202739393a204966204920636f756c64206f6666657220796f75206f' +
             '6e6c79206f6e652074697020666f7220746865206675747572652c2073756e73' +
             '637265656e20776f756c642062652069742e'
         )
-        aad = bytes.fromhex('50515253c0c1c2c3c4c5c6c7')
-        key = bytes.fromhex('808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f')
-        iv = bytes.fromhex('404142434445464748494a4b4c4d4e4f5051525354555657')
+        aad = h2s('50515253c0c1c2c3c4c5c6c7')
+        key = h2s('808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f')
+        iv = h2s('404142434445464748494a4b4c4d4e4f5051525354555657')
 
         ciphertext, tag = enc.encrypt(plaintext, aad, iv, key)
         self.assertEqual(
             ciphertext,
-            bytes.fromhex(
+            h2s(
                 'bd6d179d3e83d43b9576579493c0e939572a1700252bfaccbed2902c21396cbb' +
                 '731c7f1b0b4aa6440bf3a82f4eda7e39ae64c6708c54c216cb96b72e1213b452' +
                 '2f8c9ba40db5d945b11b69b982c1bb9e3f3fac2bc369488f76b2383565d3fff9' +
                 '21f9664c97637da9768812f615c68b13b52e'
             )
         )
-        self.assertEqual(tag, bytes.fromhex('c0875924c1c7987947deafd8780acf49'))
+        self.assertEqual(tag, h2s('c0875924c1c7987947deafd8780acf49'))
 
         decrypted_plaintext = enc.decrypt(ciphertext, aad, iv, tag, key)
         self.assertEqual(decrypted_plaintext, plaintext)
