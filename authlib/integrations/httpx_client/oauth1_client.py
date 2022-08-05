@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import typing
 from httpx import AsyncClient, Auth, Client, Request, Response
 from authlib.oauth1 import (

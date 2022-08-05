@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.jose
     ~~~~~~~~~~~~
@@ -5,6 +6,8 @@
     JOSE implementation in Authlib. Tracking the status of JOSE specs at
     https://tools.ietf.org/wg/jose/
 """
+from __future__ import absolute_import, unicode_literals
+
 from .rfc7515 import (
     JsonWebSignature, JWSAlgorithm, JWSHeader, JWSObject,
 )

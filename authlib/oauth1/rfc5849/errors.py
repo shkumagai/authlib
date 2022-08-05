@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth1.rfc5849.errors
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7,6 +8,8 @@
 
     .. _`Section 10`: https://oauth.net/core/1.0a/#rfc.section.10
 """
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.errors import AuthlibHTTPError
 from authlib.common.security import is_secure_transport
 

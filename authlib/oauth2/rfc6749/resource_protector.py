@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc6749.resource_protector
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

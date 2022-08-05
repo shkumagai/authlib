@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import base64
 from authlib.common.urls import add_params_to_qs, add_params_to_uri
 from authlib.common.encoding import to_bytes, to_native

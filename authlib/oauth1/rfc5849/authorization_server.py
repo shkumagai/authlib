@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.urls import is_valid_url, add_params_to_uri
 from .base_server import BaseServer
 from .errors import (

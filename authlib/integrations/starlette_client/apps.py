@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from starlette.responses import RedirectResponse
 from ..base_client import OAuthError
 from ..base_client import BaseApp

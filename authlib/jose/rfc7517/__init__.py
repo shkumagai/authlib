@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.jose.rfc7517
     ~~~~~~~~~~~~~~~~~~~~~
@@ -7,6 +8,8 @@
 
     https://tools.ietf.org/html/rfc7517
 """
+from __future__ import absolute_import, unicode_literals
+
 from ._cryptography_key import load_pem_key
 from .base_key import Key
 from .asymmetric_key import AsymmetricKey

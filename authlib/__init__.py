@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib
     ~~~~~~~
@@ -9,6 +10,8 @@
     :copyright: (c) 2017 by Hsiaoming Yang.
     :license: BSD, see LICENSE for more details.
 """
+from __future__ import absolute_import, unicode_literals
+
 from .consts import version, homepage, author
 
 __version__ = version

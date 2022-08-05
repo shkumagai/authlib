@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from ..rfc6749.errors import OAuth2Error
 
 # https://tools.ietf.org/html/rfc8628#section-3.5

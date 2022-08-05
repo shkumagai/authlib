@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc6750.validator
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Validate Bearer Token for in request, scope and token.
 """
+from __future__ import absolute_import, unicode_literals
 
 from ..rfc6749 import TokenValidator
 from .errors import (

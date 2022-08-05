@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import logging
 from authlib.jose import jwt, JoseError
 from ..rfc6749 import BaseGrant, TokenEndpointMixin

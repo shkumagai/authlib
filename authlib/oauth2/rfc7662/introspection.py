@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.consts import default_json_headers
 from ..rfc6749 import (
     TokenEndpoint,

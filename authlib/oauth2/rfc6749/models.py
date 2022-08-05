@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc6749.models
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This module defines how to construct Client, AuthorizationCode and Token.
 """
+from __future__ import absolute_import, unicode_literals
+
 from authlib.deprecate import deprecate
 
 

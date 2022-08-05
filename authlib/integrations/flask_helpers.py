@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from flask import request as flask_req
 from authlib.common.encoding import to_unicode
 

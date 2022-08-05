@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.encoding import (
     to_bytes, to_unicode,
     urlsafe_b64encode, urlsafe_b64decode,

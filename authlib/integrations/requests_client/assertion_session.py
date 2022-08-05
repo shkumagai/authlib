@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from requests import Session
 from authlib.oauth2.rfc7521 import AssertionClient
 from authlib.oauth2.rfc7523 import JWTBearerGrant

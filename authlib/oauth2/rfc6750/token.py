@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
+
 class BearerTokenGenerator(object):
     """Bearer token generator which can create the payload for token response
     by OAuth 2 server. A typical token response would be:

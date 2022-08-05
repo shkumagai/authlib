@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc7009
 """
+from __future__ import absolute_import, unicode_literals
 
 from .parameters import prepare_revoke_token_request
 from .revocation import RevocationEndpoint

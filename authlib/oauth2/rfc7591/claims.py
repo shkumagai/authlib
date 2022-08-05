@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.jose import BaseClaims, JsonWebKey
 from authlib.jose.errors import InvalidClaimError
 from authlib.common.urls import is_valid_url

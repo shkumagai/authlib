@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc6750
 """
+from __future__ import absolute_import, unicode_literals
 
 from .errors import InvalidTokenError, InsufficientScopeError
 from .parameters import add_bearer_token

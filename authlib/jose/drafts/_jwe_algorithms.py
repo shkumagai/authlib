@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import struct
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes

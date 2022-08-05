@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import logging
 from authlib.common.urls import add_params_to_uri
 from .base import BaseGrant, AuthorizationEndpointMixin

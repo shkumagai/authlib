@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 name = 'Authlib'
 version = '1.0.1'
 author = 'Hsiaoming Yang <me@lepture.com>'

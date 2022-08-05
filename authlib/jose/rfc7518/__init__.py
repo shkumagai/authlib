@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from .oct_key import OctKey
 from .rsa_key import RSAKey
 from .ec_key import ECKey

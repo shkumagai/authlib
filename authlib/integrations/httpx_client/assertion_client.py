@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from httpx import AsyncClient, Client, USE_CLIENT_DEFAULT
 from authlib.oauth2.rfc7521 import AssertionClient as _AssertionClient
 from authlib.oauth2.rfc7523 import JWTBearerGrant

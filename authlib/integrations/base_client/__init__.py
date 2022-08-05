@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from .registry import BaseOAuth
 from .sync_app import BaseApp, OAuth1Mixin, OAuth2Mixin
 from .sync_openid import OpenIDMixin

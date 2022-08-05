@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.encoding import json_loads, text_types
 from .key_set import KeySet
 from ._cryptography_key import load_pem_key

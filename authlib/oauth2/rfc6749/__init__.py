@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc6749
 """
+from __future__ import absolute_import, unicode_literals
 
 from .wrappers import OAuth2Request, OAuth2Token, HttpRequest
 from .errors import (

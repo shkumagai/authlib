@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.urls import add_params_to_qs
 from .assertion import client_secret_jwt_sign, private_key_jwt_sign
 from .client import ASSERTION_TYPE

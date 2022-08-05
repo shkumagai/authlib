@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from httpx import Request
 
 HTTPX_CLIENT_KWARGS = [

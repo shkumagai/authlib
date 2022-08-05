@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import time
 from authlib.common.urls import urlparse, url_decode
 from .errors import InsecureTransportError

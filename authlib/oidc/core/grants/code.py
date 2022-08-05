@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oidc.core.grants.code
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7,6 +8,7 @@
 
     .. _`Section 3.1`: http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth
 """
+from __future__ import absolute_import, unicode_literals
 
 import logging
 from .util import (

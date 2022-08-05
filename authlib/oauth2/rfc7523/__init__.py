@@ -9,6 +9,7 @@
 
     https://tools.ietf.org/html/rfc7523
 """
+from __future__ import absolute_import, unicode_literals
 
 from .jwt_bearer import JWTBearerGrant
 from .client import (

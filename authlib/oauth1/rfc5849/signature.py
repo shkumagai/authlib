@@ -7,6 +7,8 @@
 
     .. _`section 3.4`: https://tools.ietf.org/html/rfc5849#section-3.4
 """
+from __future__ import absolute_import, unicode_literals
+
 import binascii
 import hashlib
 import hmac

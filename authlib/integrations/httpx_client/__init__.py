@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from authlib.oauth1 import (
     SIGNATURE_HMAC_SHA1,
     SIGNATURE_RSA_SHA1,

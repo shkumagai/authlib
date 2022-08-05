@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import logging
 from .base import BaseGrant, TokenEndpointMixin
 from ..errors import UnauthorizedClientError

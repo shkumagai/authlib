@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.jose import JsonWebToken, JsonWebKey
 from authlib.oidc.core import UserInfo, CodeIDToken, ImplicitIDToken
 

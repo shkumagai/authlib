@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 # flake8: noqa
+from __future__ import absolute_import, unicode_literals
 
 from .integration import DjangoIntegration, token_update
 from .apps import DjangoOAuth1App, DjangoOAuth2App

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc6749.grants.refresh_token
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7,6 +8,7 @@
 
     .. _`Section 6`: https://tools.ietf.org/html/rfc6749#section-6
 """
+from __future__ import absolute_import, unicode_literals
 
 import logging
 from .base import BaseGrant, TokenEndpointMixin

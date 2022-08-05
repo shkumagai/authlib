@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from .authenticate_client import ClientAuthentication
 from .errors import (
     OAuth2Error,

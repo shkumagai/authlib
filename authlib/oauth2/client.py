@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.security import generate_token
 from authlib.common.encoding import text_types
 from authlib.common.urls import url_decode

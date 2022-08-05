@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc7662
 """
+from __future__ import absolute_import, unicode_literals
 
 from .introspection import IntrospectionEndpoint
 from .models import IntrospectionToken

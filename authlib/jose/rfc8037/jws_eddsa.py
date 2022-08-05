@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from cryptography.exceptions import InvalidSignature
 from ..rfc7515 import JWSAlgorithm
 from .okp_key import OKPKey

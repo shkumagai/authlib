@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from flask import redirect, request, session
 from flask import _app_ctx_stack
 from ..requests_client import OAuth1Session, OAuth2Session

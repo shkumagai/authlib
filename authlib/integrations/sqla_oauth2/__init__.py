@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from .client_mixin import OAuth2ClientMixin
 from .tokens_mixins import OAuth2AuthorizationCodeMixin, OAuth2TokenMixin
 from .functions import (

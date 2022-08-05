@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth1.rfc5849
     ~~~~~~~~~~~~~~~~~~~~~~
@@ -6,6 +7,7 @@
 
     https://tools.ietf.org/html/rfc5849
 """
+from __future__ import absolute_import, unicode_literals
 
 from .wrapper import OAuth1Request
 from .client_auth import ClientAuth

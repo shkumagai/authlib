@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oidc.core
     ~~~~~~~~~~~~~~~~~
@@ -6,6 +7,7 @@
 
     http://openid.net/specs/openid-connect-core-1_0.html
 """
+from __future__ import absolute_import, unicode_literals
 
 from .models import AuthorizationCodeMixin
 from .claims import (

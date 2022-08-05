@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import functools
 from authlib.oauth1.errors import OAuth1Error
 from authlib.oauth1 import ResourceProtector as _ResourceProtector

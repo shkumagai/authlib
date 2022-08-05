@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.jose.draft
     ~~~~~~~~~~~~~~~~~~~~
@@ -6,6 +7,8 @@
 
     .. _`Section 4`: https://datatracker.ietf.org/doc/html/draft-amringer-jose-chacha-02#section-4
 """
+from __future__ import absolute_import, unicode_literals
+
 from authlib.jose.rfc7516 import JWEEncAlgorithm
 from Cryptodome.Cipher import ChaCha20_Poly1305 as Cryptodome_ChaCha20_Poly1305
 

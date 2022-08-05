@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc7636
 """
+from __future__ import absolute_import, unicode_literals
 
 from .challenge import CodeChallenge, create_s256_code_challenge
 

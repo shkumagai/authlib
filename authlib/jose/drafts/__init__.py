@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from ._jwe_algorithms import JWE_DRAFT_ALG_ALGORITHMS
 from ._jwe_enc_cryptography import C20PEncAlgorithm
 try:

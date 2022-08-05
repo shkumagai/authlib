@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 REQUESTS_SESSION_KWARGS = [
     'proxies', 'hooks', 'stream', 'verify', 'cert',
     'max_redirects', 'trust_env',

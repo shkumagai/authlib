@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from werkzeug.local import LocalProxy
 from .integration import FlaskIntegration, token_update
 from .apps import FlaskOAuth1App, FlaskOAuth2App

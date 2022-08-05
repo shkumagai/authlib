@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc7519
 """
+from __future__ import absolute_import, unicode_literals
 
 from .jwt import JsonWebToken
 from .claims import BaseClaims, JWTClaims

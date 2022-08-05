@@ -7,6 +7,7 @@
 
     .. _`Section 3`: https://tools.ietf.org/html/rfc7518#section-3
 """
+from __future__ import absolute_import, unicode_literals
 
 import hmac
 import hashlib

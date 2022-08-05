@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.jose.rfc7518
     ~~~~~~~~~~~~~~~~~~~~
@@ -7,6 +8,8 @@
 
     .. _`Section 5`: https://tools.ietf.org/html/rfc7518#section-5
 """
+from __future__ import absolute_import, unicode_literals
+
 import hmac
 import hashlib
 from cryptography.hazmat.backends import default_backend

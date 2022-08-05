@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc6749.authenticate_client
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -14,6 +15,7 @@
     .. _`RFC6749`: https://tools.ietf.org/html/rfc6749
     .. _`RFC7591`: https://tools.ietf.org/html/rfc7591
 """
+from __future__ import absolute_import, unicode_literals
 
 import logging
 from .errors import InvalidClientError

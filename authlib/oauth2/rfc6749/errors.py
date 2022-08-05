@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc6749.errors
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,6 +31,8 @@
 
     :copyright: (c) 2017 by Hsiaoming Yang.
 """
+from __future__ import absolute_import, unicode_literals
+
 from authlib.oauth2.base import OAuth2Error
 from authlib.common.security import is_secure_transport
 

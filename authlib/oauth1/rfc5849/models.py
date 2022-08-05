@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 
 class ClientMixin(object):
     def get_default_redirect_uri(self):

@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc8414
 """
+from __future__ import absolute_import, unicode_literals
 
 from .models import AuthorizationServerMetadata
 from .well_known import get_well_known_url

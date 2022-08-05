@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import logging
 from werkzeug.utils import import_string
 from flask import Response

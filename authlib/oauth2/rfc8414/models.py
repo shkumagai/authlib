@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from authlib.common.urls import urlparse, is_valid_url
 from authlib.common.security import is_secure_transport
 

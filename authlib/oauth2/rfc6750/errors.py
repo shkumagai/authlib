@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.rfc6750.errors
     ~~~~~~~~~~~~~~~~~~~~~~
@@ -11,6 +12,8 @@
 
     :copyright: (c) 2017 by Hsiaoming Yang.
 """
+from __future__ import absolute_import, unicode_literals
+
 from ..base import OAuth2Error
 
 __all__ = [

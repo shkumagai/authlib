@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     authlib.oauth2.rfc7591
     ~~~~~~~~~~~~~~~~~~~~~~
@@ -7,7 +8,7 @@
 
     https://tools.ietf.org/html/rfc7591
 """
-
+from __future__ import absolute_import, unicode_literals
 
 from .claims import ClientMetadataClaims
 from .endpoint import ClientRegistrationEndpoint

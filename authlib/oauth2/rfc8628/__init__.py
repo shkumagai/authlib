@@ -8,6 +8,7 @@
 
     https://tools.ietf.org/html/rfc8628
 """
+from __future__ import absolute_import, unicode_literals
 
 from .endpoint import DeviceAuthorizationEndpoint
 from .device_code import DeviceCodeGrant, DEVICE_CODE_GRANT_TYPE
