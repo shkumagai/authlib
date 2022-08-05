@@ -31,7 +31,7 @@ class FrameworkIntegration(object):
                     session.pop(key)
 
     def get_state_data(self, session, state):
-        key = f'_state_{self.name}_{state}'
+        key = '_state_{0}_{1}'.format(self.name, state)
         if self.cache:
             value = self._get_cache_data(key)
         else:
@@ -41,7 +41,7 @@ class FrameworkIntegration(object):
         return None
 
     def set_state_data(self, session, state, data):
-        key = f'_state_{self.name}_{state}'
+        key = '_state_{0}_{1}'.format(self.name, state)
         if self.cache:
             self.cache.set(key, json.dumps({'data': data}), self.expires_in)
         else:
@@ -49,7 +49,7 @@ class FrameworkIntegration(object):
             session[key] = {'data': data, 'exp': now + self.expires_in}
 
     def clear_state_data(self, session, state):
-        key = f'_state_{self.name}_{state}'
+        key = '_state_{0}_{1}'.format(self.name, state)
         if self.cache:
             self.cache.delete(key)
         else:

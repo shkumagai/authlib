@@ -95,12 +95,12 @@ async def test_oauth2_authorize():
     assert 'state=' in url
     state = dict(url_decode(urlparse.urlparse(url).query))['state']
 
-    assert f'_state_dev_{state}' in req.session
+    assert '_state_dev_{0}'.format(state) in req.session
 
     req_scope.update(
         {
             'path': '/',
-            'query_string': f'code=a&state={state}',
+            'query_string': 'code=a&state={0}'.format(state),
             'session': req.session,
         }
     )
@@ -166,7 +166,7 @@ async def test_oauth2_authorize_code_challenge():
     assert 'code_challenge_method=S256' in url
 
     state = dict(url_decode(urlparse.urlparse(url).query))['state']
-    state_data = req.session[f'_state_dev_{state}']['data']
+    state_data = req.session['_state_dev_{0}'.format(state)]['data']
 
     verifier = state_data['code_verifier']
     assert verifier is not None

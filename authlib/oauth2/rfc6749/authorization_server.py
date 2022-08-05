@@ -228,7 +228,7 @@ class AuthorizationServer(object):
         :return: Response
         """
         if name not in self._endpoints:
-            raise RuntimeError(f'There is no "{name}" endpoint.')
+            raise RuntimeError('There is no "{0}" endpoint.'.format(name))
 
         endpoint = self._endpoints[name]
         request = endpoint.create_endpoint_request(request)

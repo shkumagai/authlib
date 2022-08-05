@@ -50,7 +50,7 @@ class MissingRequiredParameterError(OAuth1Error):
     error = 'missing_required_parameter'
 
     def __init__(self, key):
-        description = f'missing "{key}" in parameters'
+        description = 'missing "{0}" in parameters'.format(key)
         super(MissingRequiredParameterError, self).__init__(description=description)
 
 

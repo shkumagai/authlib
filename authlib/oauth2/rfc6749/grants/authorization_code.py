@@ -209,7 +209,7 @@ class AuthorizationCodeGrant(BaseGrant, AuthorizationEndpointMixin, TokenEndpoin
         log.debug('Validate token request of %r', client)
         if not client.check_grant_type(self.GRANT_TYPE):
             raise UnauthorizedClientError(
-                f'The client is not authorized to use "grant_type={self.GRANT_TYPE}"')
+                'The client is not authorized to use "grant_type={0}"'.format(self.GRANT_TYPE))
 
         code = self.request.form.get('code')
         if code is None:
@@ -362,7 +362,7 @@ def validate_code_authorization_request(grant):
     response_type = request.response_type
     if not client.check_response_type(response_type):
         raise UnauthorizedClientError(
-            f'The client is not authorized to use "response_type={response_type}"',
+            'The client is not authorized to use "response_type={0}"'.format(response_type),
             state=grant.request.state,
             redirect_uri=redirect_uri,
         )

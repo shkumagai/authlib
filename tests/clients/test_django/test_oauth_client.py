@@ -152,7 +152,7 @@ class DjangoOAuthTest(TestCase):
         self.assertIn('code_challenge=', url)
 
         state = dict(url_decode(urlparse.urlparse(url).query))['state']
-        state_data = request.session[f'_state_dev_{state}']['data']
+        state_data = request.session['_state_dev_{0}'.format(state)]['data']
         verifier = state_data['code_verifier']
 
         def fake_send(sess, req, **kwargs):

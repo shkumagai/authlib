@@ -115,13 +115,13 @@ class ECAlgorithm(JWSAlgorithm):
     def __init__(self, name, curve, sha_type):
         self.name = name
         self.curve = curve
-        self.description = f'ECDSA using {self.curve} and SHA-{sha_type}'
+        self.description = 'ECDSA using {0} and SHA-{1}'.format(self.curve, sha_type)
         self.hash_alg = getattr(self, 'SHA{}'.format(sha_type))
 
     def prepare_key(self, raw_data):
         key = ECKey.import_key(raw_data)
         if key['crv'] != self.curve:
-            raise ValueError(f'Key for "{self.name}" not supported, only "{self.curve}" allowed')
+            raise ValueError('Key for "{0}" not supported, only "{0}" allowed'.format(self.name, self.curve))
         return key
 
     def sign(self, msg, key):

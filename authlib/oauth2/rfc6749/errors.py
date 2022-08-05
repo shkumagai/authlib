@@ -132,7 +132,7 @@ class UnsupportedResponseTypeError(OAuth2Error):
         self.response_type = response_type
 
     def get_error_description(self):
-        return f'response_type={self.response_type} is not supported'
+        return 'response_type={0} is not supported'.format(self.response_type)
 
 
 class UnsupportedGrantTypeError(OAuth2Error):
@@ -148,7 +148,7 @@ class UnsupportedGrantTypeError(OAuth2Error):
         self.grant_type = grant_type
 
     def get_error_description(self):
-        return f'grant_type={self.grant_type} is not supported'
+        return 'grant_type={0} is not supported'.format(self.grant_type)
 
 
 class InvalidScopeError(OAuth2Error):
@@ -196,7 +196,7 @@ class ForbiddenError(OAuth2Error):
         error_description = self.description
         extras.append('error_description="{}"'.format(error_description))
         headers.append(
-            ('WWW-Authenticate', f'{self.auth_type} ' + ', '.join(extras))
+            ('WWW-Authenticate', '{0} '.format(self.auth_type) + ', '.join(extras))
         )
         return headers
 

@@ -20,8 +20,8 @@ class StarletteIntegration(FrameworkIntegration):
         except (TypeError, ValueError):
             return None
 
-    async def get_state_data(self, session: Optional[Dict[str, Any]], state: str) -> Dict[str, Any]:
-        key = f'_state_{self.name}_{state}'
+    async def get_state_data(self, session: Optional[Dict[str, Any]], state: str):
+        key = '_state_{0}_{1}'.format(self.name, state)
         if self.cache:
             value = await self._get_cache_data(key)
         elif session is not None:
@@ -34,7 +34,7 @@ class StarletteIntegration(FrameworkIntegration):
         return None
 
     async def set_state_data(self, session: Optional[Dict[str, Any]], state: str, data: Any):
-        key = f'_state_{self.name}_{state}'
+        key = '_state_{0}_{1}'.format(self.name, state)
         if self.cache:
             await self.cache.set(key, {'data': data}, self.expires_in)
         elif session is not None:
@@ -42,7 +42,7 @@ class StarletteIntegration(FrameworkIntegration):
             session[key] = {'data': data, 'exp': now + self.expires_in}
 
     async def clear_state_data(self, session: Optional[Dict[str, Any]], state: str):
-        key = f'_state_{self.name}_{state}'
+        key = '_state_{0}_{1}'.format(self.name, state)
         if self.cache:
             await self.cache.delete(key)
         elif session is not None:

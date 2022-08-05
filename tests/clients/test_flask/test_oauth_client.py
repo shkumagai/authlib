@@ -206,11 +206,11 @@ class FlaskOAuthTest(TestCase):
             self.assertIn('state=', url)
             state = dict(url_decode(urlparse.urlparse(url).query))['state']
             self.assertIsNotNone(state)
-            data = session[f'_state_dev_{state}']
+            data = session['_state_dev_{0}'.format(state)]
 
-        with app.test_request_context(path=f'/?code=a&state={state}'):
+        with app.test_request_context(path='/?code=a&state={0}'.format(state)):
             # session is cleared in tests
-            session[f'_state_dev_{state}'] = data
+            session['_state_dev_{0}'.format(state)] = data
 
             with mock.patch('requests.sessions.Session.send') as send:
                 send.return_value = mock_send_value(get_bearer_token())
@@ -311,19 +311,19 @@ class FlaskOAuthTest(TestCase):
 
             state = dict(url_decode(urlparse.urlparse(url).query))['state']
             self.assertIsNotNone(state)
-            data = session[f'_state_dev_{state}']
+            data = session['_state_dev_{0}'.format(state)]
 
             verifier = data['data']['code_verifier']
             self.assertIsNotNone(verifier)
 
         def fake_send(sess, req, **kwargs):
-            self.assertIn(f'code_verifier={verifier}', req.body)
+            self.assertIn('code_verifier={0}'.format(verifier), req.body)
             return mock_send_value(get_bearer_token())
 
         path = '/?code=a&state={}'.format(state)
         with app.test_request_context(path=path):
             # session is cleared in tests
-            session[f'_state_dev_{state}'] = data
+            session['_state_dev_{0}'.format(state)] = data
 
             with mock.patch('requests.sessions.Session.send', fake_send):
                 token = client.authorize_access_token()
@@ -354,7 +354,7 @@ class FlaskOAuthTest(TestCase):
 
             state = query_data['state']
             self.assertIsNotNone(state)
-            session_data = session[f'_state_dev_{state}']
+            session_data = session['_state_dev_{0}'.format(state)]
             nonce = session_data['data']['nonce']
             self.assertIsNotNone(nonce)
             self.assertEqual(nonce, query_data['nonce'])
@@ -367,7 +367,7 @@ class FlaskOAuthTest(TestCase):
         )
         path = '/?code=a&state={}'.format(state)
         with app.test_request_context(path=path):
-            session[f'_state_dev_{state}'] = session_data
+            session['_state_dev_{0}'.format(state)] = session_data
             with mock.patch('requests.sessions.Session.send') as send:
                 send.return_value = mock_send_value(token)
                 token = client.authorize_access_token()
