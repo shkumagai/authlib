@@ -770,9 +770,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, bob_key)
 
-        self.assertEqual(rv_at_bob['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_bob['header']['protected'][k] for k in rv_at_bob['header']['protected'].keys() - {'epk'}},
+            set(rv_at_bob['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_bob['header']['protected'][k]
+                for k in set(rv_at_bob['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_bob['header']['unprotected'], unprotected)
@@ -782,9 +788,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key)
 
-        self.assertEqual(rv_at_charlie['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_charlie['header']['protected'][k] for k in rv_at_charlie['header']['protected'].keys() - {'epk'}},
+            set(rv_at_charlie['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_charlie['header']['protected'][k]
+                for k in set(rv_at_charlie['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_charlie['header']['unprotected'], unprotected)
@@ -849,9 +861,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, bob_key)
 
-        self.assertEqual(rv_at_bob['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_bob['header']['protected'][k] for k in rv_at_bob['header']['protected'].keys() - {'epk'}},
+            set(rv_at_bob['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_bob['header']['protected'][k]
+                for k in set(rv_at_bob['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_bob['header']['unprotected'], unprotected)
@@ -861,9 +879,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key)
 
-        self.assertEqual(rv_at_charlie['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_charlie['header']['protected'][k] for k in rv_at_charlie['header']['protected'].keys() - {'epk'}},
+            set(rv_at_charlie['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_charlie['header']['protected'][k]
+                for k in set(rv_at_charlie['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_charlie['header']['unprotected'], unprotected)
@@ -915,9 +939,15 @@ class JWETest(unittest.TestCase):
 
         rv = jwe.deserialize_json(data, key)
 
-        self.assertEqual(rv['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv['header']['protected'][k] for k in rv['header']['protected'].keys() - {'epk'}},
+            set(rv['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv['header']['protected'][k]
+                for k in set(rv['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv['header']['unprotected'], unprotected)
@@ -1164,17 +1194,17 @@ class JWETest(unittest.TestCase):
             "d": "x8EVZH4Fwk673_mUujnliJoSrLz0zYzzCWp5GUX2fc8"
         }
 
-        protected = OrderedDict({
-            "alg": "ECDH-1PU+A128KW",
-            "enc": "A256CBC-HS512",
-            "apu": "QWxpY2U",
-            "apv": "Qm9iIGFuZCBDaGFybGll",
-            "epk": OrderedDict({
-                "kty": "OKP",
-                "crv": "X25519",
-                "x": "k9of_cpAajy0poW5gaixXGs9nHkwg1AFqUAFa39dyBc"
-            })
-        })
+        protected = OrderedDict([
+            ("alg", "ECDH-1PU+A128KW"),
+            ("enc", "A256CBC-HS512"),
+            ("apu", "QWxpY2U"),
+            ("apv", "Qm9iIGFuZCBDaGFybGll"),
+            ("epk", OrderedDict([
+                ("kty", "OKP"),
+                ("crv", "X25519"),
+                ("x", "k9of_cpAajy0poW5gaixXGs9nHkwg1AFqUAFa39dyBc")
+            ])),
+        ])
 
         cek = b'\xff\xfe\xfd\xfc\xfb\xfa\xf9\xf8\xf7\xf6\xf5\xf4\xf3\xf2\xf1\xf0' \
               b'\xef\xee\xed\xec\xeb\xea\xe9\xe8\xe7\xe6\xe5\xe4\xe3\xe2\xe1\xe0' \
@@ -1580,7 +1610,7 @@ class JWETest(unittest.TestCase):
         data = jwe.serialize_json(header_obj, payload, [bob_key, charlie_key], sender_key=alice_key)
 
         self.assertEqual(
-            data.keys(),
+            set(data.keys()),
             {
                 'protected',
                 'unprotected',
@@ -1593,14 +1623,14 @@ class JWETest(unittest.TestCase):
         )
 
         decoded_protected = json_loads(urlsafe_b64decode(to_bytes(data['protected'])).decode('utf-8'))
-        self.assertEqual(decoded_protected.keys(), protected.keys() | {'epk'})
-        self.assertEqual({k: decoded_protected[k] for k in decoded_protected.keys() - {'epk'}}, protected)
+        self.assertEqual(set(decoded_protected.keys()), set(protected.keys()) | {'epk'})
+        self.assertEqual({k: decoded_protected[k] for k in set(decoded_protected.keys()) - {'epk'}}, protected)
 
         self.assertEqual(data['unprotected'], unprotected)
 
         self.assertEqual(len(data['recipients']), len(recipients))
         for i in range(len(data['recipients'])):
-            self.assertEqual(data['recipients'][i].keys(), {'header', 'encrypted_key'})
+            self.assertEqual(set(data['recipients'][i].keys()), {'header', 'encrypted_key'})
             self.assertEqual(data['recipients'][i]['header'], recipients[i]['header'])
 
         self.assertEqual(urlsafe_b64decode(to_bytes(data['aad'])), jwe_aad)
@@ -1683,9 +1713,9 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, bob_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_bob.keys(), {'header', 'payload'})
+        self.assertEqual(set(rv_at_bob.keys()), {'header', 'payload'})
 
-        self.assertEqual(rv_at_bob['header'].keys(), {'protected', 'unprotected', 'recipients'})
+        self.assertEqual(set(rv_at_bob['header'].keys()), {'protected', 'unprotected', 'recipients'})
 
         self.assertEqual(
             rv_at_bob['header']['protected'],
@@ -1729,9 +1759,9 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_charlie.keys(), {'header', 'payload'})
+        self.assertEqual(set(rv_at_charlie.keys()), {'header', 'payload'})
 
-        self.assertEqual(rv_at_charlie['header'].keys(), {'protected', 'unprotected', 'recipients'})
+        self.assertEqual(set(rv_at_charlie['header'].keys()), {'protected', 'unprotected', 'recipients'})
 
         self.assertEqual(
             rv_at_charlie['header']['protected'],
@@ -1834,9 +1864,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, bob_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_bob['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_bob['header']['protected'][k] for k in rv_at_bob['header']['protected'].keys() - {'epk'}},
+            set(rv_at_bob['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_bob['header']['protected'][k]
+                for k in set(rv_at_bob['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_bob['header']['unprotected'], unprotected)
@@ -1846,9 +1882,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_charlie['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_charlie['header']['protected'][k] for k in rv_at_charlie['header']['protected'].keys() - {'epk'}},
+            set(rv_at_charlie['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_charlie['header']['protected'][k]
+                for k in set(rv_at_charlie['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_charlie['header']['unprotected'], unprotected)
@@ -1920,9 +1962,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, bob_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_bob['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_bob['header']['protected'][k] for k in rv_at_bob['header']['protected'].keys() - {'epk'}},
+            set(rv_at_bob['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_bob['header']['protected'][k]
+                for k in set(rv_at_bob['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_bob['header']['unprotected'], unprotected)
@@ -1932,9 +1980,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_charlie['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_charlie['header']['protected'][k] for k in rv_at_charlie['header']['protected'].keys() - {'epk'}},
+            set(rv_at_charlie['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_charlie['header']['protected'][k]
+                for k in set(rv_at_charlie['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_charlie['header']['unprotected'], unprotected)
@@ -2011,9 +2065,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, (bob_kid, bob_key), sender_key=alice_key)
 
-        self.assertEqual(rv_at_bob['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_bob['header']['protected'][k] for k in rv_at_bob['header']['protected'].keys() - {'epk'}},
+            set(rv_at_bob['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_bob['header']['protected'][k]
+                for k in set(rv_at_bob['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_bob['header']['unprotected'], unprotected)
@@ -2023,9 +2083,15 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, (charlie_kid, charlie_key), sender_key=alice_key)
 
-        self.assertEqual(rv_at_charlie['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv_at_charlie['header']['protected'][k] for k in rv_at_charlie['header']['protected'].keys() - {'epk'}},
+            set(rv_at_charlie['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv_at_charlie['header']['protected'][k]
+                for k in set(rv_at_charlie['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv_at_charlie['header']['unprotected'], unprotected)
@@ -2083,9 +2149,15 @@ class JWETest(unittest.TestCase):
 
         rv = jwe.deserialize_json(data, bob_key, sender_key=alice_key)
 
-        self.assertEqual(rv['header']['protected'].keys(), protected.keys() | {'epk'})
         self.assertEqual(
-            {k: rv['header']['protected'][k] for k in rv['header']['protected'].keys() - {'epk'}},
+            set(rv['header']['protected'].keys()),
+            set(protected.keys()) | {'epk'}
+        )
+        self.assertEqual(
+            {
+                k: rv['header']['protected'][k]
+                for k in set(rv['header']['protected'].keys()) - {'epk'}
+            },
             protected
         )
         self.assertEqual(rv['header']['unprotected'], unprotected)
@@ -2149,9 +2221,9 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_charlie.keys(), {'header', 'payload'})
+        self.assertEqual(set(rv_at_charlie.keys()), {'header', 'payload'})
 
-        self.assertEqual(rv_at_charlie['header'].keys(), {'protected', 'unprotected', 'recipients'})
+        self.assertEqual(set(rv_at_charlie['header'].keys()), {'protected', 'unprotected', 'recipients'})
 
         self.assertEqual(
             rv_at_charlie['header']['protected'],
@@ -2769,9 +2841,9 @@ class JWETest(unittest.TestCase):
 
         rv = jwe.deserialize_json(parsed_data, (available_key_id, available_key), sender_key=alice_public_key)
 
-        self.assertEqual(rv.keys(), {'header', 'payload'})
+        self.assertEqual(set(rv.keys()), {'header', 'payload'})
 
-        self.assertEqual(rv['header'].keys(), {'protected', 'unprotected', 'recipients'})
+        self.assertEqual(set(rv['header'].keys()), {'protected', 'unprotected', 'recipients'})
 
         self.assertEqual(
             rv['header']['protected'],
@@ -2862,9 +2934,9 @@ class JWETest(unittest.TestCase):
 
         rv_at_bob = jwe.deserialize_json(data, bob_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_bob.keys(), {'header', 'payload'})
+        self.assertEqual(set(rv_at_bob.keys()), {'header', 'payload'})
 
-        self.assertEqual(rv_at_bob['header'].keys(), {'protected', 'unprotected', 'recipients'})
+        self.assertEqual(set(rv_at_bob['header'].keys()), {'protected', 'unprotected', 'recipients'})
 
         self.assertEqual(
             rv_at_bob['header']['protected'],
@@ -2908,9 +2980,9 @@ class JWETest(unittest.TestCase):
 
         rv_at_charlie = jwe.deserialize_json(data, charlie_key, sender_key=alice_key)
 
-        self.assertEqual(rv_at_charlie.keys(), {'header', 'payload'})
+        self.assertEqual(set(rv_at_charlie.keys()), {'header', 'payload'})
 
-        self.assertEqual(rv_at_charlie['header'].keys(), {'protected', 'unprotected', 'recipients'})
+        self.assertEqual(set(rv_at_charlie['header'].keys()), {'protected', 'unprotected', 'recipients'})
 
         self.assertEqual(
             rv_at_charlie['header']['protected'],
