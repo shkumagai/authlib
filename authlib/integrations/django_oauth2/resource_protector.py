@@ -12,6 +12,7 @@ from authlib.oauth2.rfc6750 import (
     BearerTokenValidator as _BearerTokenValidator
 )
 from .signals import token_authenticated
+from ..django_helpers import parse_request_headers
 
 
 class ResourceProtector(_ResourceProtector):
@@ -22,8 +23,9 @@ class ResourceProtector(_ResourceProtector):
         :param scopes: a list of scope values
         :return: token object
         """
+        headers = parse_request_headers(request)
         url = request.build_absolute_uri()
-        req = HttpRequest(request.method, url, request.body, request.headers)
+        req = HttpRequest(request.method, url, request.body, headers)
         req.req = request
         if isinstance(scopes, str):
             scopes = [scopes]
