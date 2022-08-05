@@ -83,7 +83,7 @@ class RSAKey(AsymmetricKey):
         return numbers.public_key(default_backend())
 
     @classmethod
-    def generate_key(cls, key_size=2048, options=None, is_private=False) -> 'RSAKey':
+    def generate_key(cls, key_size=2048, options=None, is_private=False):
         if key_size < 512:
             raise ValueError('key_size must not be less than 512')
         if key_size % 8 != 0:

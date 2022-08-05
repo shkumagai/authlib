@@ -1,3 +1,5 @@
+import itertools
+
 from django.http import HttpResponseRedirect
 from ..requests_client import OAuth1Session, OAuth2Session
 from ..base_client import (
@@ -79,7 +81,8 @@ class DjangoOAuth2App(DjangoAppMixin, OAuth2Mixin, OpenIDMixin, BaseApp):
         state_data = self.framework.get_state_data(request.session, params.get('state'))
         self.framework.clear_state_data(request.session, params.get('state'))
         params = self._format_state_params(state_data, params)
-        token = self.fetch_access_token(**params, **kwargs)
+        merged_params = dict(itertools.chain(params.items(), kwargs.items()))
+        token = self.fetch_access_token(**merged_params)
 
         if 'id_token' in token and 'nonce' in state_data:
             userinfo = self.parse_id_token(token, nonce=state_data['nonce'], claims_options=claims_options)

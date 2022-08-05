@@ -2,7 +2,10 @@ import os
 import time
 import json
 import requests
-from unittest import mock
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 ROOT = os.path.abspath(os.path.dirname(__file__))

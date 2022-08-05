@@ -1,3 +1,6 @@
+# coding: utf-8
+from __future__ import absolute_import
+
 from django.test import TestCase as _TestCase, RequestFactory
 from django.conf import settings
 from django.utils.module_loading import import_module

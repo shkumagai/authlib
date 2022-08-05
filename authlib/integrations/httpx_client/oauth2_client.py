@@ -24,7 +24,8 @@ class OAuth2Auth(Auth, TokenAuth):
     """Sign requests for OAuth 2.0, currently only bearer token is supported."""
     requires_request_body = True
 
-    def auth_flow(self, request: Request) -> typing.Generator[Request, Response, None]:
+    def auth_flow(self, request: Request):
+        # type: (Request) -> typing.Generator[Request, Response, None]
         try:
             url, headers, body = self.prepare(
                 str(request.url), request.headers, request.content)
@@ -38,7 +39,8 @@ class OAuth2Auth(Auth, TokenAuth):
 class OAuth2ClientAuth(Auth, ClientAuth):
     requires_request_body = True
 
-    def auth_flow(self, request: Request) -> typing.Generator[Request, Response, None]:
+    def auth_flow(self, request: Request):
+        # type: (Request) -> typing.Generator[Request, Response, None]
         url, headers, body = self.prepare(
             request.method, str(request.url), request.headers, request.content)
         headers['Content-Length'] = str(len(body))

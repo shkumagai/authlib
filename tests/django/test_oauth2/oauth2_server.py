@@ -8,11 +8,11 @@ from .models import Client, OAuth2Token
 
 class TestCase(_TestCase):
     def setUp(self):
-        super().setUp()
+        super(TestCase, self).setUp()
         os.environ['AUTHLIB_INSECURE_TRANSPORT'] = 'true'
 
     def tearDown(self):
-        super().tearDown()
+        super(TestCase, self).tearDown()
         os.environ.pop('AUTHLIB_INSECURE_TRANSPORT')
 
     def create_server(self):

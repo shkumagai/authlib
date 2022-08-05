@@ -2,9 +2,10 @@ import os
 from abc import ABCMeta
 
 
-class JWEAlgorithmBase(object, metaclass=ABCMeta):
+class JWEAlgorithmBase(object):
     """Base interface for all JWE algorithms.
     """
+    __metaclass__ = ABCMeta
     EXTRA_HEADERS = None
 
     name = None
@@ -19,10 +20,12 @@ class JWEAlgorithmBase(object, metaclass=ABCMeta):
         raise NotImplementedError
 
 
-class JWEAlgorithm(JWEAlgorithmBase, metaclass=ABCMeta):
+class JWEAlgorithm(JWEAlgorithmBase):
     """Interface for JWE algorithm conforming to RFC7518.
     JWA specification (RFC7518) SHOULD implement the algorithms for JWE with this base implementation.
     """
+    __metaclass__ = ABCMeta
+
     def wrap(self, enc_alg, headers, key, preset=None):
         raise NotImplementedError
 
@@ -30,10 +33,12 @@ class JWEAlgorithm(JWEAlgorithmBase, metaclass=ABCMeta):
         raise NotImplementedError
 
 
-class JWEAlgorithmWithTagAwareKeyAgreement(JWEAlgorithmBase, metaclass=ABCMeta):
+class JWEAlgorithmWithTagAwareKeyAgreement(JWEAlgorithmBase):
     """Interface for JWE algorithm with tag-aware key agreement (in key agreement with key wrapping mode).
     ECDH-1PU is an example of such an algorithm.
     """
+    __metaclass__ = ABCMeta
+
     def generate_keys_and_prepare_headers(self, enc_alg, key, sender_key, preset=None):
         raise NotImplementedError
 

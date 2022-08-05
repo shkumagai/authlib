@@ -15,8 +15,10 @@ def extract_client_kwargs(kwargs):
     return client_kwargs
 
 
-def build_request(url, headers, body, initial_request: Request) -> Request:
+def build_request(url, headers, body, initial_request: Request):
     """Make sure that all the data from initial request is passed to the updated object"""
+    # type: (...) -> Request:
+
     updated_request = Request(
         method=initial_request.method,
         url=url,

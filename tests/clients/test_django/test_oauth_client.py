@@ -1,4 +1,8 @@
-from unittest import mock
+try:
+    from unittest import mock
+except ImportError:
+    import mock  # noqa: F401
+
 from authlib.jose import jwk
 from authlib.oidc.core.grants.util import generate_id_token
 from authlib.integrations.django_client import OAuth, OAuthError

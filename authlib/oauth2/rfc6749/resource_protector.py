@@ -87,10 +87,11 @@ class ResourceProtector(object):
         self._default_realm = None
         self._default_auth_type = None
 
-    def register_token_validator(self, validator: TokenValidator):
+    def register_token_validator(self, validator):
         """Register a token validator for a given Authorization type.
         Authlib has a built-in BearerTokenValidator per rfc6750.
         """
+        # type: (TokenValidator) -> None
         if not self._default_auth_type:
             self._default_realm = validator.realm
             self._default_auth_type = validator.TOKEN_TYPE

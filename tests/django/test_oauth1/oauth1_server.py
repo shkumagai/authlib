@@ -8,12 +8,12 @@ from .models import Client, TokenCredential
 
 class TestCase(_TestCase):
     def setUp(self):
-        super().setUp()
+        super(TestCase, self).setUp()
         os.environ['AUTHLIB_INSECURE_TRANSPORT'] = 'true'
 
     def tearDown(self):
         os.environ.pop('AUTHLIB_INSECURE_TRANSPORT')
-        super().tearDown()
+        super(TestCase, self).tearDown()
 
     def create_server(self):
         return CacheAuthorizationServer(Client, TokenCredential)
